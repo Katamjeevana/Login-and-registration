@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page with Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="full-page">
+    <nav class="navbar">
+      <a href="#" class="nav-link">Home</a>
+      <a href="#" class="nav-link">About</a>
+      <a href="#" class="nav-link">Services</a>
+      <a href="#" class="nav-link">Contact</a>
+      <button id="loginBtn" class="login-btn">Login</button>
+    </nav>
+
+    <!-- Login and Registration Modal -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <span id="closeModal" class="close-btn">&times;</span>
+        <!-- Login Form -->
+        <form id="loginForm" class="form">
+          <h2>Login</h2>
+          <input type="text" placeholder="Username" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Login</button>
+          <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
+        </form>
+        <!-- Registration Form -->
+        <form id="registerForm" class="form hidden">
+          <h2>Register</h2>
+          <input type="text" placeholder="Username" required>
+          <input type="email" placeholder="Email" required>
+          <input type="password" placeholder="Password" required>
+          <button type="submit">Register</button>
+          <p>Already have an account? <a href="#" id="showLogin">Login</a></p>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script>
+    // Get elements
+    const loginBtn = document.getElementById('loginBtn');
+    const modal = document.getElementById('modal');
+    const closeModal = document.getElementById('closeModal');
+    const showRegister = document.getElementById('showRegister');
+    const showLogin = document.getElementById('showLogin');
+    const loginForm = document.getElementById('loginForm');
+    const registerForm = document.getElementById('registerForm');
+
+    // Show modal on login button click
+    loginBtn.addEventListener('click', () => {
+      modal.classList.remove('hidden');
+    });
+
+    // Hide modal on close button click
+    closeModal.addEventListener('click', () => {
+      modal.classList.add('hidden');
+    });
+
+    // Switch to register form
+    showRegister.addEventListener('click', (e) => {
+      e.preventDefault();
+      loginForm.classList.add('hidden');
+      registerForm.classList.remove('hidden');
+    });
+
+    // Switch to login form
+    showLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+      registerForm.classList.add('hidden');
+      loginForm.classList.remove('hidden');
+    });
+
+    // Hide modal when clicking outside the modal content
+    window.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        modal.classList.add('hidden');
+      }
+    });
+
+  </script>
+</body>
+
+</html>
